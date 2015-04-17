@@ -1,6 +1,6 @@
 /**
 * 封装微信API
-* @ author 李东
+* @ author 李东 lid_ong@sina.com
 */
 ;(function (g) {
 	if ('undefined' != typeof g.wxapi ) { return false;}
@@ -11,7 +11,7 @@
                 'title': '分享标题', // 分享标题
                 'desc': '分享描述', // 分享描述
                 'link': g.location.origin, // 分享链接
-                'imgUrl': g.location.origin+'/h5/images/logo.png', // 分享图标
+                'imgUrl': g.location.origin+'/m/images/logo.png', // 分享图标
                 //'type': '', // 分享类型,music、video或link，不填默认为link
                 //'dataUrl': '', // 如果type是music或video，则要提供数据链接，默认为空
             },
@@ -86,7 +86,7 @@
         if (!!this._inited) { return false;}
         var me = this;
         this.ajax.post(getConfigUrl, {url:(window.location.href.split('#')[0])}, function (json) {
-        //$.post(getConfigUrl, {url:(window.location.href.split('#')[0])}, function (json) {
+        //$.post(getConfigUrl, {:(window.location.href.split('#')[0])}, function (json) {
             if (json.status == 1) {
                 me._wxConfig = json.data;
                 me._inited = true;
