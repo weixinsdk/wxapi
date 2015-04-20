@@ -7,6 +7,8 @@
     var w = g.wxapi ={
             _inited : false,
             _debug : false,
+            _wxConfig:'',
+            _version : '0.1.0',
             _config : {
                 'title': '分享标题', // 分享标题
                 'desc': '分享描述', // 分享描述
@@ -14,9 +16,11 @@
                 'imgUrl': g.location.origin+'/m/images/logo.png', // 分享图标
                 //'type': '', // 分享类型,music、video或link，不填默认为link
                 //'dataUrl': '', // 如果type是music或video，则要提供数据链接，默认为空
+                'cancel'  : function () {},
+                'success' : function () {},
+                'trigger' : function () {},
             },
-            _wxConfig:'',
-            _version : '0.1.0',
+            
     };
     var getConfigUrl = '/weixin/getjsapi.do';// 配置获取signatuer地址
     
@@ -115,16 +119,36 @@
         me.alert(CF);
         wx.ready(function (){
         // 1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
-        wx.onMenuShareAppMessage(CF);
+        w.shareAPP(CF);
         // 2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
-        wx.onMenuShareTimeline(CF);
+        w.shareTime(CF);
         // 3 监听“分享到QQ”按钮点击、自定义分享内容及分享结果接口
-        wx.onMenuShareQQ(CF);
+        w.shareQQ(CF);
         // 4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
-        wx.onMenuShareWeibo(CF);
+        w.shareWeibo(CF);
         });
     };
     
+    /** 分享给朋友 */
+    w.shareAPP = function (config) {
+        this._config = this._extend(this._config,config);
+        wx.onMenuShareAppMessage(this._config);
+    };
+    /** 分享到朋友圈 */
+    w.shareTime = function (config) {
+        this._config = this._extend(this._config,config);
+        wx.onMenuShareTimeline(this._config);
+    };
+    /** 分享到qq */
+    w.shareQQ = function (config) {
+        this._config = this._extend(this._config,config);
+        wx.onMenuShareQQ(this._config);
+    };
+    /** 分享到微博 */
+    w.shareWeibo = function (config) {
+        this._config = this._extend(this._config,config);
+        wx.onMenuShareWeibo(this._config);
+    };
     /** 隐藏所有非基础按钮接口 */
     w.hideAllBaseMenu = function (){
         wx.hideAllNonBaseMenuItem();
