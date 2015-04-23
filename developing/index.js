@@ -154,11 +154,26 @@
         wx.hideAllNonBaseMenuItem();
     };
     
+    /** 隐藏右上角菜单接口 */
+    wx.hideOptionMenu = function () {
+        wx.hideOptionMenu();
+    };
+
+    /** 显示右上角菜单接口 */
+    wx.showOptionMenu = function () {
+        wx.showOptionMenu();
+    };
+
     /** 显示所有功能按钮接口 */
     w.showAllBaseMenu = function () {
         wx.showAllNonBaseMenuItem();
     };
     
+
+    /** 关闭当前网页窗口接口 */
+    w.closeWindow = function () {
+        wx.closeWindow();
+    };
     /** 获取设备网络环境 返回网络类型2g，3g，4g，wifi */
     w.getNetType = function () {
         var networkType ='';
