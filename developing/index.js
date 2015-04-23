@@ -159,6 +159,16 @@
         wx.showAllNonBaseMenuItem();
     };
     
+    /** 获取设备网络环境 返回网络类型2g，3g，4g，wifi */
+    w.getNetType = function () {
+        var networkType ='';
+        wx.getNetworkType({
+            success: function (res) {
+                networkType  = res.networkType; 
+            }
+        });
+        return networkType;
+    };
     //wxapi.ajax.post('http://timelineapp.pointstone.org/coreball/game.html?openid=o3OtAuK--ELj5XEt3w22NGpb6Jv8&from=timeline&isappinstalled=0','',function (json){console.log(json)},'html');
     
     /******************************* 工具方法 *********************************/
